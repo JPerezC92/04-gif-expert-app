@@ -13,6 +13,7 @@ const AddCategory = ({ setCategories }) => {
 
     if (inputValue.trim().length > 2) {
       setCategories((state) => [inputValue, ...state]);
+      setInputValue("");
     }
   };
 

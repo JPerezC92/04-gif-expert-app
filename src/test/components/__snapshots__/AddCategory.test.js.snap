@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el archivo <AddCategory /> Debe de comparar correctamente con la imagen 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <h2 />
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</form>
+`;

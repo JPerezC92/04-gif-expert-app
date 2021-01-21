@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el archivo GifGridItem Debe de comparar correctamente con la imagen 1`] = `
+<div
+  className="card animate__animated animate__fadeIn animate__slow"
+>
+  <img
+    alt="one punch GIF by Adult Swim"
+    src="https://media3.giphy.com/media/l3vRlt8kty8KKeHni/giphy.gif?c…79ada6yamuui69bx0aw98l98cmx34tfeggl0dxngpdpk1a&rid=giphy.gif"
+  />
+  <p>
+    one punch GIF by Adult Swim
+  </p>
+</div>
+`;
