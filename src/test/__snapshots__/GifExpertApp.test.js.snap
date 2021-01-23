@@ -2,35 +2,64 @@
 
 exports[` Pruebas en el componente <GifExpertApp /> Debe de compararse correcamente conla imagen 1`] = `
 <Fragment>
-  <h1>
-    GifExpertApp
-  </h1>
-  <AddCategory
-    setCategories={[Function]}
-  />
+  <header
+    className="header"
+  >
+    <h1
+      className="header__title"
+    >
+      GifExpertApp
+    </h1>
+    <AddCategory
+      setCategories={[Function]}
+    />
+  </header>
   <hr />
-  <ol />
+  <main
+    className="main"
+  >
+    <ul
+      className="categories__grid"
+    >
+      <CategoriesGrid
+        category="cat"
+        key="cat0"
+      />
+    </ul>
+  </main>
 </Fragment>
 `;
 
 exports[` Pruebas en el componente <GifExpertApp /> Debe de mostrar una lista de categorias 1`] = `
 <Fragment>
-  <h1>
-    GifExpertApp
-  </h1>
-  <AddCategory
-    setCategories={[Function]}
-  />
+  <header
+    className="header"
+  >
+    <h1
+      className="header__title"
+    >
+      GifExpertApp
+    </h1>
+    <AddCategory
+      setCategories={[Function]}
+    />
+  </header>
   <hr />
-  <ol>
-    <GifGrid
-      category="One Punch"
-      key="One Punch0"
-    />
-    <GifGrid
-      category="cat"
-      key="cat1"
-    />
-  </ol>
+  <main
+    className="main"
+  >
+    <ul
+      className="categories__grid"
+    >
+      <CategoriesGrid
+        category="cat"
+        key="cat1"
+      />
+      <CategoriesGrid
+        category="One Punch"
+        key="One Punch0"
+      />
+    </ul>
+  </main>
 </Fragment>
 `;

@@ -2,11 +2,17 @@
 
 exports[`Pruebas en el archivo <AddCategory /> Debe de comparar correctamente con la imagen 1`] = `
 <form
+  className="form"
   onSubmit={[Function]}
 >
-  <h2 />
+  <p
+    className="form__inputValue"
+  />
+   
   <input
+    className="form__input"
     onChange={[Function]}
+    placeholder="Exp. \\"cat\\""
     type="text"
     value=""
   />

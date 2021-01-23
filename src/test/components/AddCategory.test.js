@@ -18,7 +18,7 @@ describe("Pruebas en el archivo <AddCategory />", () => {
     const input = wrapper.find("input");
     const value = "Hola mundo";
     input.simulate("change", { target: { value } });
-    const inputValue = wrapper.find("h2").text().trim();
+    const inputValue = wrapper.find("p").text().trim();
 
     expect(inputValue).toBe(value);
   });

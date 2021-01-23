@@ -1,9 +1,9 @@
 import { shallow } from "enzyme";
-import GifGrid from "../../components/GifGrid";
+import CategoriesGrid from "../../components/CategoriesGrid";
 import useFetchGifs from "../../hooks/useFetchGifs";
 jest.mock("../../hooks/useFetchGifs");
 
-describe("Pruebas en el componente <GifGrid />", () => {
+describe("Pruebas en el componente <CategoriesGrid />", () => {
   const category = "cat";
 
   test("Debe de compararse correctamente con la imagen", () => {
@@ -12,7 +12,7 @@ describe("Pruebas en el componente <GifGrid />", () => {
       loading: true,
     });
 
-    const wrapper = shallow(<GifGrid category={category} />);
+    const wrapper = shallow(<CategoriesGrid category={category} />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -34,7 +34,7 @@ describe("Pruebas en el componente <GifGrid />", () => {
       loading: false,
     });
 
-    const wrapper = shallow(<GifGrid category={category} />);
+    const wrapper = shallow(<CategoriesGrid category={category} />);
 
     // expect(wrapper).toMatchSnapshot();
     expect(wrapper.find("p").exists()).toBe(false);

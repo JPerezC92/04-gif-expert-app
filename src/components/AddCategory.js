@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "./AddCategory.css";
 
 const AddCategory = ({ setCategories }) => {
   const [inputValue, setInputValue] = useState("");
@@ -12,15 +13,22 @@ const AddCategory = ({ setCategories }) => {
     e.preventDefault();
 
     if (inputValue.trim().length > 2) {
-      setCategories((state) => [inputValue, ...state]);
+      setCategories((state) => [...state, inputValue]);
       setInputValue("");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{inputValue}</h2>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
+    <form className="form" onSubmit={handleSubmit}>
+      <p className="form__inputValue">{inputValue}</p>
+      &nbsp;
+      <input
+        className="form__input"
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder='Exp. "cat"'
+      />
     </form>
   );
 };

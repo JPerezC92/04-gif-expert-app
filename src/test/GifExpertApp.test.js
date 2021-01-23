@@ -12,7 +12,7 @@ describe(" Pruebas en el componente <GifExpertApp />", () => {
     const categories = ["One Punch", "cat"];
     const wrapper = shallow(<GifExpertApp defaultCategories={categories} />);
 
-    expect(wrapper.find("GifGrid").length).toBe(categories.length);
+    expect(wrapper.find("CategoriesGrid").length).toBe(categories.length);
     expect(wrapper).toMatchSnapshot();
   });
 });

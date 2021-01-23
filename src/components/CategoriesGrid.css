@@ -1,0 +1,31 @@
+.categories__item {
+  background-color: rgb(255, 255, 240);
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.category__title {
+  border-bottom: 3px double rgb(84, 228, 173);
+  border-top: 3px double rgb(84, 228, 173);
+  border-radius: 0.5em;
+  font-size: 2em;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 0.5em;
+  padding: 0 2.5em;
+}
+
+.category__loading {
+  display: inline-flex;
+  margin-left: 2em;
+  font-size: 1.5em;
+}
+
+.gif__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}

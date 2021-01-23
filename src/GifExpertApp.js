@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import AddCategory from "./components/AddCategory";
-import GifGrid from "./components/GifGrid";
+import CategoriesGrid from "./components/CategoriesGrid";
+import "./GifExpertApp.css";
 
-const GifExpertApp = ({ defaultCategories = [] }) => {
+const GifExpertApp = ({ defaultCategories = ["cat"] }) => {
   const [categories, setCategories] = useState(defaultCategories);
 
   return (
     <>
-      <h1>GifExpertApp</h1>
-      <AddCategory setCategories={setCategories} />
+      <header className="header">
+        <h1 className="header__title">GifExpertApp</h1>
+
+        <AddCategory setCategories={setCategories} />
+      </header>
+
       <hr />
 
-      <ol>
-        {categories.map((category, index) => (
-          <GifGrid key={category + index} category={category} />
-        ))}
-      </ol>
+      <main className="main">
+        <ul className="categories__grid">
+          {categories
+            .map((category, index) => (
+              <CategoriesGrid key={category + index} category={category} />
+            ))
+            .reverse()}
+        </ul>
+      </main>
     </>
   );
 };
