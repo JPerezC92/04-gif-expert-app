@@ -1,0 +1,26 @@
+{
+	"root": true,
+	"extends": [
+		"standard-with-typescript",
+		"plugin:import/typescript",
+		"plugin:prettier/recommended",
+		"next/core-web-vitals"
+	],
+	"plugins": ["simple-import-sort", "import"],
+	"parser": "@typescript-eslint/parser",
+	"overrides": [
+		{
+			"files": ["__TESTS__/**"],
+			"rules": { "import/first": "off" }
+		}
+	],
+	"rules": {
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+		"import/first": "error",
+		"import/newline-after-import": "error",
+		"import/no-duplicates": "error",
+		"prettier/prettier": "warn",
+		"require-await": "warn"
+	}
+}
