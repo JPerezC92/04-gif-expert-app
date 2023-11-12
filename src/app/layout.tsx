@@ -3,6 +3,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { GifSearch } from '@/gifs/components';
+import ThemeRegistry from '@/ui/ThemeRegistry/ThemeRegistry';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -17,7 +20,13 @@ export default function RootLayout({
 }): React.ReactElement {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<ThemeRegistry>
+					<h1>Gif Search</h1>
+					<GifSearch />
+					{children}
+				</ThemeRegistry>
+			</body>
 		</html>
 	);
 }
