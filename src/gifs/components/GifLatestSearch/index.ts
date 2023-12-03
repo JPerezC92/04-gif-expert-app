@@ -1,0 +1,1 @@
+export { GifLatestSearch } from './GifLatestSearch';
