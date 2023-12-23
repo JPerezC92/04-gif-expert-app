@@ -1,5 +1,6 @@
 'use client';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import fontColorContrast from 'font-color-contrast';
 import React from 'react';
 
 import { type Gif as GifModel } from '@/gifs/domain';
@@ -72,19 +73,20 @@ export const Gif = React.memo(function Gif({ gif, className }: Props) {
 				zIndex={-1}
 			/>
 
-			<Box
+			<Typography
+				fontSize='0.85rem'
 				position='absolute'
 				left='0'
 				bottom='0'
 				zIndex={1}
 				fontWeight='bold'
-				bgcolor='rgba(0,0,0,0.9)'
 				padding='0 0.5rem'
-				color='whitesmoke'
-				sx={{ borderTopRightRadius: '0.5rem' }}
+				bgcolor={color}
+				sx={{ borderTopRightRadius: '0.5rem', letterSpacing: '0.02rem' }}
+				color={fontColorContrast(color)}
 			>
 				{gif.title}
-			</Box>
+			</Typography>
 		</Box>
 	);
 });
