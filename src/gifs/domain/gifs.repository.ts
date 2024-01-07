@@ -8,4 +8,6 @@ export interface GifsRepository {
 		gifFindCriteria: GifFindCriteria,
 	) => Promise<PaginatedResponse<Gif>>;
 	trending: () => Promise<Gif[]>;
+	trendingSearches: () => Promise<string[]>;
+	findById: (id: Gif['id']) => Promise<Gif>;
 }

@@ -1,11 +1,12 @@
 'use client';
-import { IconButton, MenuItem, Paper, TextField } from '@mui/material';
+import { Box, IconButton, MenuItem, Paper, TextField } from '@mui/material';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { IoIosSearch } from 'react-icons/io';
 
 import { Ratings, SearchesParam } from '@/gifs/domain';
 import { appRoutes } from '@/shared/routes';
+import { theme } from '@/ui/ThemeRegistry';
 
 interface Props {
 	q?: string;
@@ -43,43 +44,67 @@ export function GifSearch({ q = '', rating = Ratings.values.g }: Props) {
 	};
 
 	return (
-		<Paper
-			sx={{ padding: '1rem 2rem' }}
-			component='form'
-			className=''
-			onSubmit={onSubmit}
+		<Box
+			width='100%'
+			display='flex'
+			justifyContent='center'
+			marginBottom='1rem'
+			position='sticky'
+			paddingBlock='1.5rem'
+			zIndex={2}
+			top='0'
+			sx={{
+				':before': {
+					content: '""',
+					position: 'absolute',
+					top: '0',
+					left: '0',
+					width: 'calc(100% + 2px)',
+					height: '100%',
+					backgroundColor: theme.palette.background.default,
+					zIndex: '-1',
+					transform: 'translateX(-1px)',
+				},
+			}}
 		>
-			<TextField
-				defaultValue={rating}
-				id='outlined-basic'
-				label='Rating'
-				name='rating'
-				select
-				sx={{ minWidth: '10ch' }}
-				variant='outlined'
+			<Paper
+				sx={{ padding: '1rem 2rem' }}
+				component='form'
+				className=''
+				onSubmit={onSubmit}
 			>
-				<MenuItem value='1'>Ratings</MenuItem>
-				{Ratings.iterable.map(rating => (
-					<MenuItem key={rating} value={rating}>
-						{rating}
-					</MenuItem>
-				))}
-			</TextField>
+				<TextField
+					defaultValue={rating}
+					id='outlined-basic'
+					label='Rating'
+					name='rating'
+					select
+					sx={{ minWidth: '10ch' }}
+					variant='outlined'
+				>
+					<MenuItem value='1'>Ratings</MenuItem>
+					{Ratings.iterable.map(rating => (
+						<MenuItem key={rating} value={rating}>
+							{rating}
+						</MenuItem>
+					))}
+				</TextField>
 
-			<TextField
-				InputProps={{
-					endAdornment: (
-						<IconButton type='submit'>
-							<IoIosSearch />
-						</IconButton>
-					),
-				}}
-				id='outlined-basic'
-				name='search'
-				label='Search'
-				variant='outlined'
-				defaultValue={q}
-			/>
-		</Paper>
+				<TextField
+					InputProps={{
+						endAdornment: (
+							<IconButton type='submit'>
+								<IoIosSearch />
+							</IconButton>
+						),
+					}}
+					id='outlined-basic'
+					name='search'
+					label='Search'
+					variant='outlined'
+					defaultValue={q}
+				/>
+			</Paper>
+		</Box>
 	);
 }

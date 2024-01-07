@@ -1,9 +1,13 @@
 import { GifEndpointToDomainAdapter } from '@/gifs/adapters';
 import { gifFindCriteriaBehavior, type GifsRepository } from '@/gifs/domain';
-import { gifGetEndpointResponseSchema } from '@/gifs/schemas';
+import {
+	gifGetEndpointResponseSchema,
+	gifSearchGetEndpointResponseSchema,
+} from '@/gifs/schemas';
+import { trendingSearchesSchema } from '@/gifs/schemas/trendingSearchesSchema';
 import { environment } from '@/shared/utils';
 
-export function GifsProdRepository(): GifsRepository {
+export function ProdGifsRepository(): GifsRepository {
 	return {
 		findByCriteria: async ({
 			query,
@@ -29,7 +33,7 @@ export function GifsProdRepository(): GifsRepository {
 				throw new Error(json);
 			}
 
-			const validated = gifGetEndpointResponseSchema.parse(json);
+			const validated = gifSearchGetEndpointResponseSchema.parse(json);
 
 			return {
 				data: validated.data.map(GifEndpointToDomainAdapter),
@@ -59,9 +63,44 @@ export function GifsProdRepository(): GifsRepository {
 				throw new Error(json);
 			}
 
-			const validated = gifGetEndpointResponseSchema.parse(json);
+			const validated = gifSearchGetEndpointResponseSchema.parse(json);
 
 			return validated.data.map(GifEndpointToDomainAdapter);
+		},
+
+		findById: async id => {
+			const params = new URLSearchParams();
+			params.set('api_key', environment.GIPHY_API_KEY);
+
+			const res = await fetch(
+				`${environment.GIPHY_API_URL}/gifs/${id}?${params.toString()}`,
+			);
+
+			const json = await res.json();
+
+			if (!res.ok) {
+				throw new Error('Gif not found');
+			}
+
+			const validated = gifGetEndpointResponseSchema.parse(json);
+
+			return GifEndpointToDomainAdapter(validated.data);
+		},
+
+		trendingSearches: async () => {
+			const res = await fetch(
+				`${environment.GIPHY_API_URL}/trending/searches?api_key=${environment.GIPHY_API_KEY}`,
+			);
+
+			const json = await res.json();
+
+			if (!res.ok) {
+				throw new Error(json);
+			}
+
+			const validated = trendingSearchesSchema.parse(json);
+
+			return validated.data;
 		},
 	};
 }

@@ -11,7 +11,7 @@ import {
 	type Rating,
 } from '@/gifs/domain';
 import { gifQueryKeys } from '@/gifs/domain/gif.queryKeys';
-import { GifsProdRepository } from '@/gifs/services';
+import { ProdGifsRepository } from '@/gifs/services';
 import { useIsNearScreen } from '@/shared/hooks';
 import { type PaginatedResponse } from '@/shared/models';
 
@@ -26,7 +26,7 @@ export function GifSearchResult({
 	initialData,
 	query,
 	rating,
-	gifsRepository = GifsProdRepository(),
+	gifsRepository = ProdGifsRepository(),
 }: Props) {
 	const { fetchNextPage, data, isLoading, isFetching, isFetchingNextPage } =
 		useInfiniteQuery({

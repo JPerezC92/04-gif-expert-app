@@ -1,38 +1,37 @@
-'use client';
-
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { Button } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 import { SearchesParam } from '@/gifs/domain';
+import { type PageParams } from '@/shared/models';
 import { appRoutes } from '@/shared/routes';
 
 interface Props {
 	search: string;
+	searchParams: PageParams;
 }
 
-export const GifSearchRemoval: React.FC<Props> = ({ search }) => {
-	const router = useRouter();
-	const params = useParams();
-	const searchParams = useSearchParams();
-	const searchesParam = SearchesParam.create(
-		searchParams.get(SearchesParam.key),
-	);
+export const GifSearchRemoval: React.FC<Props> = ({ search, searchParams }) => {
+	const searchesParam = SearchesParam.create(searchParams[SearchesParam.key]);
+	const newSearchesParam = searchesParam.removeSearch(search);
+	const params = new URLSearchParams(searchParams);
+	params.set(SearchesParam.key, newSearchesParam.toString());
 
-	const { query = '', rating = '' } = params;
+	const isJustOneSearch = searchesParam.toArray().length === 1;
+	const href = isJustOneSearch
+		? appRoutes.base
+		: `${appRoutes.base}/?${
+				searchesParam.toArray().length ? params.toString() : ''
+		  }`;
 
 	return (
-		<button
-			onClick={() => {
-				const params = new URLSearchParams(searchParams);
-				const newSearchesParam = searchesParam.removeSearch(search);
-				params.set(SearchesParam.key, newSearchesParam.toString());
-				const href = `${appRoutes.search}/${query as string}/${
-					rating as string
-				}?${params.toString()}`;
-				router.push(href);
-			}}
-		>
-			X
-		</button>
+		<Button
+			sx={{ paddingInline: '0.25rem' }}
+			variant='text'
+			LinkComponent={Link}
+			startIcon={<FaRegTrashAlt />}
+			href={href}
+		/>
 	);
 };

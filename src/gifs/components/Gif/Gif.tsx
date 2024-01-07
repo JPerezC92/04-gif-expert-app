@@ -1,18 +1,23 @@
 'use client';
-import { Box, Typography } from '@mui/material';
+import { Box, type SxProps, Typography } from '@mui/material';
 import fontColorContrast from 'font-color-contrast';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import { type Gif as GifModel } from '@/gifs/domain';
+import { appRoutes } from '@/shared/routes';
 import { randomColor } from '@/shared/utils';
 
 interface Props {
-	gif: GifModel;
 	className?: string;
+	sx?: SxProps;
+	gif: GifModel;
 }
 
-export const Gif = React.memo(function Gif({ gif, className }: Props) {
+export const Gif = React.memo(function Gif({ gif, className, sx }: Props) {
 	const [color, setColor] = React.useState('');
+	const searchParams = useSearchParams();
 
 	React.useEffect(() => {
 		setColor(randomColor());
@@ -20,30 +25,36 @@ export const Gif = React.memo(function Gif({ gif, className }: Props) {
 
 	return (
 		<Box
-			component='div'
-			position='relative'
+			component={Link}
+			href={`${appRoutes.gifs}/${gif.id}?${searchParams.toString()}`}
 			className={className}
+			display='block'
+			position='relative'
 			sx={{
+				...sx,
 				height: '100%',
 				border: '3px solid transparent',
 				':before': {
 					content: '""',
+					borderRadius: '0.1rem',
 					position: 'absolute',
-					width: '100%',
-					height: '100%',
-					inset: '0',
 					zIndex: -1,
-					backgroundColor: color,
-				},
-				':hover:before': {
+					backgroundColor: 'transparent',
+					opacity: 0,
+					inset: '-6px',
 					width: 'calc(100% + 12px)',
 					height: 'calc(100% + 12px)',
-					inset: '-6px',
+				},
+				':hover:before': {
+					backgroundColor: color,
+					opacity: 1,
+					transition: 'all 0.2s ease-in-out',
 				},
 			}}
 		>
 			<Box
 				component='img'
+				title={gif.title}
 				loading='lazy'
 				width='100%'
 				height='100%'

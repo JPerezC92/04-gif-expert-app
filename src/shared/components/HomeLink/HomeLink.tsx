@@ -19,10 +19,11 @@ export function HomeLink({ children }: Props) {
 			variant='h1'
 			component={Link}
 			href={`/?${params.toString()}`}
-			marginBlockEnd={4}
 			fontWeight='bold'
 			letterSpacing='0.05rem'
+			width='auto'
 			className={styles.home_title}
+			fontSize={{ xs: '3rem', md: '6rem' }}
 		>
 			{children}
 		</Typography>
