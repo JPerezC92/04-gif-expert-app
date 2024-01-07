@@ -2,11 +2,11 @@
 	"root": true,
 	"extends": [
 		"standard-with-typescript",
-		"plugin:import/typescript",
 		"plugin:prettier/recommended",
+		"plugin:import/typescript",
 		"next/core-web-vitals"
 	],
-	"plugins": ["simple-import-sort", "import"],
+	"plugins": ["import", "simple-import-sort", "unused-imports"],
 	"parser": "@typescript-eslint/parser",
 	"overrides": [
 		{
@@ -15,6 +15,20 @@
 		}
 	],
 	"rules": {
+		// eslint-plugin-unused-imports
+		"no-unused-vars": "off",
+		"unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+		// eslint-plugin-unused-imports
+
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
 		"import/first": "error",

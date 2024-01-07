@@ -1,1 +1,1 @@
-export * from './gifsProd.repository';
+export * from './prodGifs.repository';

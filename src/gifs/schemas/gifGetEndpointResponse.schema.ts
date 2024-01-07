@@ -4,7 +4,7 @@ import { paginationSchema } from '@/shared/schemas';
 
 import { gifEndpointSchema } from './gifEndpoint.schema';
 
-export const gifGetEndpointResponseSchema = z.object({
+export const gifSearchGetEndpointResponseSchema = z.object({
 	data: z.array(gifEndpointSchema),
 	pagination: paginationSchema,
 });
