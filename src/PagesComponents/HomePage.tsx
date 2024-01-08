@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { GifGrid, GifLatestSearch, GifSearch } from '@/gifs/components';
 import { type GifsRepository, SearchesParam } from '@/gifs/domain';
+import { appRoutes } from '@/shared/routes';
 import { type PagePropis, randomColor } from '@/shared/utils';
 
 export interface Props extends Required<PagePropis> {
@@ -13,7 +14,7 @@ export interface Props extends Required<PagePropis> {
 export async function HomePage({ searchParams, gifsRepository }: Props) {
 	const gifList = await gifsRepository.trending();
 	const trendingSearches = await gifsRepository.trendingSearches();
-	const searches = SearchesParam.create(searchParams[SearchesParam.key]);
+	const lastestSearches = SearchesParam.create(searchParams[SearchesParam.key]);
 
 	return (
 		<>
@@ -53,6 +54,7 @@ export async function HomePage({ searchParams, gifsRepository }: Props) {
 										sx={{ width: 'fit-content', padding: '0' }}
 									>
 										<Button
+											title={search}
 											sx={{
 												bgcolor: color,
 												color: fontColorContrast(color),
@@ -64,7 +66,7 @@ export async function HomePage({ searchParams, gifsRepository }: Props) {
 												},
 											}}
 											component={Link}
-											href={`/search/${search}/g?q=${searches
+											href={`${appRoutes.search}/${search}/g?q=${lastestSearches
 												.newSearch(search)
 												.toString()}`}
 										>
