@@ -1,4 +1,4 @@
-describe('Home', () => {
+describe('Gif detail page', () => {
 	it('should contain the gif image when navigating to the gif detail page', () => {
 		// Given
 		cy.visit('/');

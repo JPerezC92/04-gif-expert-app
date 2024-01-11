@@ -14,9 +14,9 @@ import React from 'react';
 import { GifSearchRemoval } from '@/gifs/components/GifSearchRemoval';
 import { SearchesParam } from '@/gifs/domain';
 import { appRoutes } from '@/shared/routes';
-import { type PagePropis } from '@/shared/utils';
+import { type PagePros } from '@/shared/utils';
 
-interface Props extends Pick<Required<PagePropis>, 'searchParams'> {
+interface Props extends Pick<Required<PagePros>, 'searchParams'> {
 	rating?: string;
 }
 

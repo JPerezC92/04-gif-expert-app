@@ -109,6 +109,9 @@ devDependencies:
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
+  process:
+    specifier: ^0.11.10
+    version: 0.11.10
   react-icons:
     specifier: ^4.11.0
     version: 4.11.0(react@18.2.0)

@@ -2,14 +2,14 @@ import { Box, Typography } from '@mui/material';
 
 import { GifSearch, GifSearchResult } from '@/gifs/components';
 import { type GifsRepository, Ratings } from '@/gifs/domain';
-import { type PagePropis } from '@/shared/utils';
+import { type PagePros } from '@/shared/utils';
 
 interface Params {
 	query: string;
 	rating: string;
 }
 
-interface Props extends PagePropis {
+interface Props extends PagePros {
 	gifsRepository: GifsRepository;
 }
 
@@ -32,7 +32,7 @@ export async function RatingPage({ params, gifsRepository }: Props) {
 				<Box flexGrow='1'>
 					<Box display='flex' flexDirection='column' marginBlockStart={4}>
 						<Typography variant='h2' fontSize='2.5rem'>
-							Searh{' '}
+							Search{' '}
 							<Box component='span' fontStyle='italic'>
 								{query}
 							</Box>

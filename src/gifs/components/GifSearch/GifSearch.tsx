@@ -100,6 +100,7 @@ export function GifSearch({ q = '', rating = Ratings.values.g }: Props) {
 					}}
 					id='outlined-basic'
 					name='search'
+					title='Search field'
 					label='Search'
 					onChange={e => {
 						setSearch(e.target.value);

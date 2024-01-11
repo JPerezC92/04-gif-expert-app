@@ -12,5 +12,5 @@ export const gifFindCriteriaBehavior = {
 	nextOffset: ({
 		offset,
 		limit,
-	}: Required<Pick<GifFindCriteria, 'limit' | 'offset'>>) => offset + limit + 1,
+	}: Required<Pick<GifFindCriteria, 'limit' | 'offset'>>) => offset + limit,
 };
