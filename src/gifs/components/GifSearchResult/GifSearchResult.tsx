@@ -1,5 +1,6 @@
 'use client';
 
+import { CircularProgress } from '@mui/material';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React from 'react';
 
@@ -28,6 +29,9 @@ export function GifSearchResult({
 	rating,
 	gifsRepository = ProdGifsRepository(),
 }: Props) {
+	const itemsCount = React.useRef(initialData.data.length);
+	const totalItemsCount = React.useRef(initialData.pagination.totalCount);
+
 	const { fetchNextPage, data, isLoading, isFetching, isFetchingNextPage } =
 		useInfiniteQuery({
 			queryKey: gifQueryKeys.infinite({ query, rating }),
@@ -53,11 +57,13 @@ export function GifSearchResult({
 				pages: [initialData],
 				pageParams: [initialData.pagination.offset],
 			},
+
 			enabled: !initialData.data.length,
 		});
 
 	const isNearScreen = useIsNearScreen(() => {
-		if (!isLoading && !isFetching && !isFetchingNextPage) {
+		const hasMore = itemsCount.current < totalItemsCount.current;
+		if (!isLoading && !isFetching && !isFetchingNextPage && hasMore) {
 			fetchNextPage().catch(console.error);
 		}
 	});
@@ -67,12 +73,18 @@ export function GifSearchResult({
 		[],
 	);
 
+	itemsCount.current = gifList?.length ?? 0;
+
 	return (
 		<>
 			<GifGrid gifList={gifList} />
 
-			{isLoading ? (
-				<div>Loading...</div>
+			{isLoading || isFetchingNextPage ? (
+				<CircularProgress
+					sx={{
+						margin: '2rem auto',
+					}}
+				/>
 			) : (
 				<div ref={isNearScreen}>Don&apos;t look at me</div>
 			)}

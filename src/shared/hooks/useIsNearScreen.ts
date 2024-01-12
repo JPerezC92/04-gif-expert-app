@@ -2,7 +2,7 @@ import React from 'react';
 
 export function useIsNearScreen(
 	callback: () => void,
-	margin: string = '50px',
+	margin: string = '30px',
 	threshold: number = 1.0,
 ) {
 	const nodeRef = React.useRef<HTMLDivElement | null>(null);
@@ -26,8 +26,6 @@ export function useIsNearScreen(
 			observer.disconnect();
 		};
 	}, [callback, margin, threshold]);
-
-	// React.useEffect(() => {}, []);
 
 	return nodeRef;
 }

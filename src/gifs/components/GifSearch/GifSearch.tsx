@@ -18,18 +18,15 @@ export function GifSearch({ q = '', rating = Ratings.values.g }: Props) {
 	const params = useSearchParams();
 	const searchesParam = SearchesParam.create(params.get(SearchesParam.key));
 
+	const [search, setSearch] = React.useState(q);
+	const [_rating, setRating] = React.useState(rating);
+
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
-		const val = e.target as HTMLFormElement;
-		const search = val.search as HTMLInputElement;
-		const rating = val.rating as HTMLSelectElement;
-		const newSearch = search.value
-			? search.value
-			: 'You must enter a search term';
-		const newRating = rating.value;
-		const searchParams = new URLSearchParams(params);
 
-		// if (!newSearch) return;
+		const newSearch = search || 'You must enter a search term';
+		const newRating = _rating;
+		const searchParams = new URLSearchParams(params);
 
 		searchParams.set(
 			SearchesParam.key,
@@ -68,16 +65,19 @@ export function GifSearch({ q = '', rating = Ratings.values.g }: Props) {
 			}}
 		>
 			<Paper
+				role='form'
 				sx={{ padding: '1rem 2rem' }}
 				component='form'
-				className=''
 				onSubmit={onSubmit}
 			>
 				<TextField
-					defaultValue={rating}
 					id='outlined-basic'
 					label='Rating'
 					name='rating'
+					onChange={e => {
+						setRating(e.target.value);
+					}}
+					value={_rating}
 					select
 					sx={{ minWidth: '10ch' }}
 					variant='outlined'
@@ -93,16 +93,20 @@ export function GifSearch({ q = '', rating = Ratings.values.g }: Props) {
 				<TextField
 					InputProps={{
 						endAdornment: (
-							<IconButton type='submit'>
+							<IconButton type='submit' title='Search'>
 								<IoIosSearch />
 							</IconButton>
 						),
 					}}
 					id='outlined-basic'
 					name='search'
+					title='Search field'
 					label='Search'
+					onChange={e => {
+						setSearch(e.target.value);
+					}}
+					value={search}
 					variant='outlined'
-					defaultValue={q}
 				/>
 			</Paper>
 		</Box>

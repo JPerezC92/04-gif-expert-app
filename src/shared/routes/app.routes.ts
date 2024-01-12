@@ -4,4 +4,4 @@ export const appRoutes = {
 	base,
 	search: `${base}/search`,
 	gifs: `${base}/gifs`,
-};
+} as const;

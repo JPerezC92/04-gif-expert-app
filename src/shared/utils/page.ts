@@ -1,20 +1,18 @@
 import type React from 'react';
 
-// import { type PageParams } from '@/shared/models';
-
-export interface PagePropis {
+export interface PagePros {
 	params?: object | Record<string, string>;
 	searchParams?: object & Record<string, string>;
 }
 
 export function Page(
-	element: React.FC<Required<PagePropis>>,
-): React.FC<Required<PagePropis>> {
-	return (props: Required<PagePropis>) => element(props);
+	element: React.FC<Required<PagePros>>,
+): React.FC<Required<PagePros>> {
+	return (props: Required<PagePros>) => element(props);
 }
 
 export function PageAsync(
-	element: <T extends Required<PagePropis>>(p: T) => Promise<React.JSX.Element>,
+	element: <T extends Required<PagePros>>(p: T) => Promise<React.JSX.Element>,
 ) {
-	return async (props: Required<PagePropis>) => await element(props);
+	return async (props: Required<PagePros>) => await element(props);
 }

@@ -2,9 +2,9 @@ import { Box, Typography } from '@mui/material';
 
 import { Gif } from '@/gifs/components/Gif';
 import { type GifsRepository } from '@/gifs/domain';
-import { type PagePropis } from '@/shared/utils';
+import { type PagePros } from '@/shared/utils';
 
-interface Props extends PagePropis {
+interface Props extends PagePros {
 	gifsRepository: GifsRepository;
 }
 export interface Params {
