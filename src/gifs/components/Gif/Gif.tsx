@@ -29,10 +29,10 @@ export const Gif = React.memo(function Gif({ gif, className, sx }: Props) {
 			href={`${appRoutes.gifs}/${gif.id}?${searchParams.toString()}`}
 			className={className}
 			display='block'
-			position='relative'
 			sx={{
 				...sx,
 				height: '100%',
+				position: 'relative',
 				border: '3px solid transparent',
 				':before': {
 					content: '""',
@@ -63,13 +63,20 @@ export const Gif = React.memo(function Gif({ gif, className, sx }: Props) {
 				alt={gif.title}
 				zIndex={1}
 			/>
+
 			<Box
 				zIndex={-1}
 				component='img'
 				loading='lazy'
 				width='100%'
 				height='100%'
-				sx={{ objectFit: 'cover', verticalAlign: 'middle', inset: 0 }}
+				sx={{
+					objectFit: 'cover',
+					verticalAlign: 'middle',
+					inset: 0,
+					filter: 'saturate(0.3)',
+					overflow: 'hidden',
+				}}
 				src={gif.imageOriginal.url}
 				alt={gif.title}
 				position='absolute'
@@ -80,7 +87,7 @@ export const Gif = React.memo(function Gif({ gif, className, sx }: Props) {
 				height='100%'
 				bgcolor={'rgba(0,0,0,0.2)'}
 				position='absolute'
-				sx={{ inset: 0, backdropFilter: 'blur(5px)' }}
+				sx={{ top: 0, left: 0 }}
 				zIndex={-1}
 			/>
 
